@@ -1,0 +1,6 @@
+jsonschema
+allure-python-commons
+selenium
+pytest
+pyyaml
+webdriver-manager
