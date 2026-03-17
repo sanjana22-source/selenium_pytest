@@ -1,6 +1,8 @@
+import pytest
+
 from utilities.file_reader import read_json_file
 
-
+@pytest.mark.api
 def test_validate_product_price_for_specific_customer_read_from_json():
     json_file = "C://Users//sanja//PycharmProjects//saucedemo_framework//testdata//sample.json"
     customer_id = "CUST-1001"
@@ -13,6 +15,7 @@ def test_validate_product_price_for_specific_customer_read_from_json():
                 if item["productName"] == product_name:
                     assert item["price"] == 29.99, f"Expected price 29.99 but got {item['price']}"
 
+@pytest.mark.api
 def test_validate_prime_members_have_free_shipping():
 
     json_file = "C://Users//sanja//PycharmProjects//saucedemo_framework//testdata//sample.json"
@@ -22,7 +25,7 @@ def test_validate_prime_members_have_free_shipping():
         if order["customer"]["membershipType"]== "Prime":
             assert order["pricing"]["shippingFee"]== 0.00, f"Expected free shipping for Prime members but got {order['pricing']['shippingFee']}"
 
-
+@pytest.mark.api
 def test_validate_cancelled_orders_have_refunded():
     json_file = "C://Users//sanja//PycharmProjects//saucedemo_framework//testdata//sample.json"
     json_data = read_json_file(json_file)
@@ -32,7 +35,7 @@ def test_validate_cancelled_orders_have_refunded():
             assert order["payment"]["paymentStatus"]== "Refunded", f"Expected payment status 'Refunded' for cancelled customer but got {order['payment']['paymentStatus']}"
 
 
-
+@pytest.mark.api
 def test_validate_total_amount_calculation():
     json_file = "C://Users//sanja//PycharmProjects//saucedemo_framework//testdata//sample.json"
     json_data = read_json_file(json_file)

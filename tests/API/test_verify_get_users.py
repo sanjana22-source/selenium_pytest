@@ -1,9 +1,10 @@
+import pytest
 
 from schemas.user_list_schema import user_list_schema
 from utilities.response_validator import ResponseValidator
 from utilities.schema_validator_utility import SchemaValidator
 
-
+@pytest.mark.api
 def test_verify_get_users(user_service):
     response = user_service.get_users(page=1)
     ResponseValidator.validate_status_code(response, 200)
@@ -13,6 +14,7 @@ def test_verify_get_users(user_service):
     SchemaValidator.validate_schema(response_json, user_list_schema)
     assert len(response_json["data"]) > 0
 
+@pytest.mark.api
 def test_verify_get_users_invalid_page(user_service):
     response = user_service.get_users(page=999)
     ResponseValidator.validate_status_code(response, 200)
@@ -22,6 +24,7 @@ def test_verify_get_users_invalid_page(user_service):
     SchemaValidator.validate_schema(response_json, user_list_schema)
     assert len(response_json["data"]) == 0
 
+@pytest.mark.api
 def test_verify_get_users_missing_page_param(user_service):
     response = user_service.client.get("/users")
     ResponseValidator.validate_status_code(response, 200)
@@ -31,6 +34,8 @@ def test_verify_get_users_missing_page_param(user_service):
     SchemaValidator.validate_schema(response_json, user_list_schema)
     assert len(response_json["data"]) > 0
 
+
+@pytest.mark.api
 def test_verify_get_users_invalid_page_defaults_to_first_page(user_service):
     response = user_service.client.get("/users", params={"page": "invalid"})
     ResponseValidator.validate_status_code(response, 200)
@@ -40,6 +45,7 @@ def test_verify_get_users_invalid_page_defaults_to_first_page(user_service):
     SchemaValidator.validate_schema(response_json, user_list_schema)
     assert len(response_json["data"]) > 0
 
+@pytest.mark.api
 def test_verify_get_users_missing_token(user_service):
     response = user_service.client.get("/users", headers={})
     ResponseValidator.validate_status_code(response, 200)
@@ -50,7 +56,7 @@ def test_verify_get_users_missing_token(user_service):
     assert len(response_json["data"]) > 0
 
 
-
+@pytest.mark.api
 def test_verify_get_users_invalid_token(user_service):
     response = user_service.client.get("/users", headers={"Authorization": "Bearer invalidtoken"})
     ResponseValidator.validate_status_code(response, 200)
@@ -60,6 +66,8 @@ def test_verify_get_users_invalid_token(user_service):
     SchemaValidator.validate_schema(response_json, user_list_schema)
     assert len(response_json["data"]) > 0
 
+
+@pytest.mark.api
 def test_verify_missing_fields_in_response(user_service):
     response = user_service.get_users(page=1)
     ResponseValidator.validate_status_code(response, 200)
@@ -75,7 +83,7 @@ def test_verify_missing_fields_in_response(user_service):
         assert "last_name" in user
         assert "avatar" in user
 
-
+@pytest.mark.api
 def test_verify_response_time_exceeds_threshold(user_service):
         response = user_service.get_users(page=1)
         ResponseValidator.validate_status_code(response, 200)
@@ -84,6 +92,7 @@ def test_verify_response_time_exceeds_threshold(user_service):
         except AssertionError as e:
             print(f"Response time validation failed: {e}")
 
+@pytest.mark.api
 def test_verify_non_json_response(user_service):
     response = user_service.client.get("/users", headers={"Accept": "text/html"})
     ResponseValidator.validate_status_code(response, 200)
