@@ -1,4 +1,6 @@
+import json
 import os
+from turtle import pd
 
 import yaml
 
@@ -10,4 +12,12 @@ def get_config():
         config = yaml.safe_load(file)
         return config
 
+def read_json_file(file):
+    with open(file, "r") as f:
+        return json.load(f)
+
+
+def read_csv_file(file):
+    with open(file, "r") as f:
+        return f.read()
 

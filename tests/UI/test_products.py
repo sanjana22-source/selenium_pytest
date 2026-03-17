@@ -1,8 +1,10 @@
+import pytest
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
-from utilities.config_reader import get_config
+from utilities.file_reader import get_config
 
 
+@pytest.mark.ui
 def test_verify_product_count(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -13,6 +15,7 @@ def test_verify_product_count(driver):
     product_count = inventory_page.get_product_count()
     assert product_count == 6, f"Expected 6 products, but found {product_count}"
 
+@pytest.mark.ui
 def test_verify_product_names(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -31,7 +34,7 @@ def test_verify_product_names(driver):
     ]
     assert product_names == expected_names, f"Expected product names do not match actual names. Expected: {expected_names}, Actual: {product_names}"
 
-
+@pytest.mark.ui
 def test_verify_price_for_specific_product(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -44,7 +47,7 @@ def test_verify_price_for_specific_product(driver):
     actual_price = product_prices[0]  # Assuming the first product is "Sauce Labs Backpack"
     assert actual_price == expected_price, f"Expected price for 'Sauce Labs Backpack' is {expected_price}, but found {actual_price}"
 
-
+@pytest.mark.ui
 def test_verify_user_clicks_add_to_cart(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -56,7 +59,7 @@ def test_verify_user_clicks_add_to_cart(driver):
     cart_badge = inventory_page.find_locator(inventory_page.shopping_cart_badge)
     assert cart_badge.text== "1", f"Expected shopping cart badge to show '1' after adding 'Sauce Labs Backpack', but found '{cart_badge.text}'"
 
-
+@pytest.mark.ui
 def test_verify_user_clicks_add_to_cart_and_remove(driver):
     login = LoginPage(driver)
     config = get_config()

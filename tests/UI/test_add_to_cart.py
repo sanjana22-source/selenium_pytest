@@ -1,11 +1,13 @@
 import time
 
+import pytest
+
 from pages.cart_page import CartPage
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
-from utilities.config_reader import get_config
+from utilities.file_reader import get_config
 
-
+@pytest.mark.ui
 def test_verify_product_added_to_cart(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -21,6 +23,7 @@ def test_verify_product_added_to_cart(driver):
     expected_items = ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
     assert cart_items == expected_items, f"Expected items in cart: {expected_items}"
 
+@pytest.mark.ui
 def test_verify_product_added_to_cart_and_remove(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -36,7 +39,7 @@ def test_verify_product_added_to_cart_and_remove(driver):
     expected_items = []
     assert cart_items == expected_items, f"Expected items in cart: {expected_items}"
 
-
+@pytest.mark.ui
 def test_verify_product_added_to_cart_and_remove_multiple_items(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -56,7 +59,7 @@ def test_verify_product_added_to_cart_and_remove_multiple_items(driver):
     expected_items = ["Sauce Labs Bike Light","Sauce Labs Bolt T-Shirt"]
     assert cart_items == expected_items, f"Expected items in cart: {expected_items}"
 
-
+@pytest.mark.ui
 def test_verify_user_clicks_continue_shopping_after_adding_to_cart(driver):
     login = LoginPage(driver)
     config = get_config()
@@ -72,7 +75,7 @@ def test_verify_user_clicks_continue_shopping_after_adding_to_cart(driver):
     expected_url = "https://www.saucedemo.com/inventory.html"
     assert current_url == expected_url, f"Expected to be redirected to inventory page after clicking 'Continue Shopping', but found {current_url}"
 
-
+@pytest.mark.ui
 def test_verify_user_clicks_checkout_after_adding_to_cart(driver):
     login = LoginPage(driver)
     config = get_config()

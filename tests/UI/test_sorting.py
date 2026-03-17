@@ -1,8 +1,10 @@
+import pytest
+
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
-from utilities.config_reader import get_config
+from utilities.file_reader import get_config
 
-
+@pytest.mark.ui
 def test_sorting_products_by_price_low_to_high(driver):
     login = LoginPage(driver)
     config= get_config()
@@ -16,6 +18,7 @@ def test_sorting_products_by_price_low_to_high(driver):
     assert product_prices == sorted_prices, f"Expected products to be sorted by price from low to high, but found {product_prices}"
 
 
+@pytest.mark.ui
 def test_sorting_products_by_price_high_to_low(driver):
     login = LoginPage(driver)
     config= get_config()
@@ -28,6 +31,8 @@ def test_sorting_products_by_price_high_to_low(driver):
     sorted_prices = sorted(product_prices, reverse=True)
     assert product_prices == sorted_prices, f"Expected products to be sorted by price from high to low, but found {product_prices}"
 
+
+@pytest.mark.ui
 def test_sorting_products_by_name_a_to_z(driver):
     login = LoginPage(driver)
     config= get_config()
@@ -40,6 +45,9 @@ def test_sorting_products_by_name_a_to_z(driver):
     sorted_names = sorted(product_names)
     assert product_names == sorted_names, f"Expected products to be sorted by name from A to Z, but found {product_names}"
 
+
+
+@pytest.mark.ui
 def test_sorting_products_by_name_z_to_a(driver):
     login = LoginPage(driver)
     config= get_config()

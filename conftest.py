@@ -6,13 +6,17 @@ from allure_commons.types import AttachmentType
 import pytest
 
 from services.user_service import UserService
-from utilities.config_reader import get_config
+from utilities.file_reader import get_config
 from utilities.driver_factory import DriverFactory
 
 
 # ----------------------
 # UI Driver Fixture
 # ----------------------
+
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store", default="chrome")
+
 
 @pytest.fixture(scope="function")
 def driver():
@@ -40,6 +44,10 @@ def user_service():
         base_url=config["base_url"],
         default_headers=config.get("default_headers")
     )
+
+
+
+
 
 # ----------------------
 # Screenshot Hook

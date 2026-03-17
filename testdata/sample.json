@@ -1,0 +1,153 @@
+{
+  "orders": [
+    {
+      "orderId": "ORD-20260212-001",
+      "orderDate": "2026-02-12T14:32:00Z",
+      "orderStatus": "Shipped",
+
+      "customer": {
+        "customerId": "CUST-1001",
+        "firstName": "Sanjana",
+        "lastName": "Amrutansu",
+        "email": "sanjana@example.com",
+        "phone": "+1-669-000-0000",
+        "membershipType": "Prime"
+      },
+
+      "items": [
+        {
+          "productId": "PROD-IPH16",
+          "productName": "iPhone 16 Pro",
+          "price": 1099.00,
+          "quantity": 1,
+          "currency": "USD",
+          "itemStatus": "Shipped"
+        },
+        {
+          "productId": "PROD-CASE-001",
+          "productName": "iPhone 16 Clear Case",
+          "price": 29.99,
+          "quantity": 2,
+          "currency": "USD",
+          "itemStatus": "Processing"
+        }
+      ],
+
+      "payment": {
+        "paymentMethod": "Credit Card",
+        "cardType": "Visa",
+        "last4Digits": "1234",
+        "paymentStatus": "Completed"
+      },
+
+      "shipping": {
+        "carrier": "UPS",
+        "trackingNumber": "1Z999AA10123456784",
+        "estimatedDelivery": "2026-02-15"
+      },
+
+      "pricing": {
+        "subtotal": 1158.98,
+        "tax": 92.72,
+        "shippingFee": 0.00,
+        "discount": 20.00,
+        "totalAmount": 1231.70,
+        "currency": "USD"
+      }
+    },
+
+    {
+      "orderId": "ORD-20260213-002",
+      "orderDate": "2026-02-13T10:15:00Z",
+      "orderStatus": "Processing",
+
+      "customer": {
+        "customerId": "CUST-2002",
+        "firstName": "Rahul",
+        "lastName": "Sharma",
+        "email": "rahul.sharma@example.com",
+        "phone": "+1-408-555-1111",
+        "membershipType": "Standard"
+      },
+
+      "items": [
+        {
+          "productId": "PROD-LAP-001",
+          "productName": "Dell XPS 15",
+          "price": 1499.00,
+          "quantity": 1,
+          "currency": "USD",
+          "itemStatus": "Processing"
+        }
+      ],
+
+      "payment": {
+        "paymentMethod": "Debit Card",
+        "cardType": "MasterCard",
+        "last4Digits": "9876",
+        "paymentStatus": "Completed"
+      },
+
+      "shipping": {
+        "carrier": "FedEx",
+        "trackingNumber": null,
+        "estimatedDelivery": "2026-02-18"
+      },
+
+      "pricing": {
+        "subtotal": 1499.00,
+        "tax": 119.92,
+        "shippingFee": 15.00,
+        "discount": 0.00,
+        "totalAmount": 1633.92,
+        "currency": "USD"
+      }
+    },
+
+    {
+      "orderId": "ORD-20260214-003",
+      "orderDate": "2026-02-14T09:00:00Z",
+      "orderStatus": "Cancelled",
+
+      "customer": {
+        "customerId": "CUST-3003",
+        "firstName": "Emily",
+        "lastName": "Johnson",
+        "email": "emily.j@example.com",
+        "phone": "+1-650-777-2222",
+        "membershipType": "Prime"
+      },
+
+      "items": [
+        {
+          "productId": "PROD-HEAD-001",
+          "productName": "Sony WH-1000XM5",
+          "price": 399.00,
+          "quantity": 1,
+          "currency": "USD",
+          "itemStatus": "Cancelled"
+        }
+      ],
+
+      "payment": {
+        "paymentMethod": "PayPal",
+        "paymentStatus": "Refunded"
+      },
+
+      "shipping": {
+        "carrier": null,
+        "trackingNumber": null,
+        "estimatedDelivery": null
+      },
+
+      "pricing": {
+        "subtotal": 399.00,
+        "tax": 31.92,
+        "shippingFee": 0.00,
+        "discount": 0.00,
+        "totalAmount": 430.92,
+        "currency": "USD"
+      }
+    }
+  ]
+}
