@@ -1,3 +1,4 @@
+import pytest
 import requests
 
 
@@ -59,13 +60,14 @@ def test_get_comment_by_id():
   assert data["id"] == 1
 
 # Test Albums Endpoint
-
+@pytest.mark.api
 def test_get_albums():
 
   response = requests.get(f"{base_url}/albums")
   assert response.status_code == 200
   assert isinstance(response.json(), list)
 
+@pytest.mark.api
 def test_get_album_by_id():
   response = requests.get(f"{base_url}/albums/1")
   assert response.status_code == 200
@@ -74,13 +76,13 @@ def test_get_album_by_id():
   assert data["id"] == 1
 
 # Test Photos Endpoint
-
+@pytest.mark.api
 def test_get_photos():
   response = requests.get(f"{base_url}/photos")
   assert response.status_code == 200
   assert isinstance(response.json(), list)
 
-
+@pytest.mark.api
 def test_get_photo_by_id():
   response = requests.get(f"{base_url}/photos/1")
   assert response.status_code == 200
@@ -89,13 +91,13 @@ def test_get_photo_by_id():
   assert data["id"] == 1
 
 # Test Todos Endpoint
-
+@pytest.mark.api
 def test_get_todos():
   response = requests.get(f"{base_url}/todos")
   assert response.status_code == 200
   assert isinstance(response.json(), list)
 
-
+@pytest.mark.api
 def test_get_todo_by_id():
   response = requests.get(f"{base_url}/todos/1")
   assert response.status_code == 200
