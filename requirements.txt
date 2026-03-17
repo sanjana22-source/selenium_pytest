@@ -2,5 +2,6 @@ jsonschema
 allure-python-commons
 selenium
 pytest
+requests
 pyyaml
 webdriver-manager
